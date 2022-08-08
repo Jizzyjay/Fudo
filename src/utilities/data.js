@@ -11,7 +11,6 @@ import Berries from '../asset/img/f4.png'
 import Monster from '../asset/img/d4.png'
 
 
-
 export const heroData = [
     {
         id: 1,
@@ -67,8 +66,8 @@ export const categories = [
     },
     {
         id: 6,
-        name: "Snack",
-        urlParamName: "snacks",
+        name: "Rice",
+        urlParamName: "rice",
     },
     {
         id: 7,

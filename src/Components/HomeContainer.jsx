@@ -4,8 +4,6 @@ import HeroBg from '../asset/img/heroBg.png'
 import { heroData } from '../utilities/data'
 
 
-
-
 const HomeContainer = () => {
     return (
         <section 

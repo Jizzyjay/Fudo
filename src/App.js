@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import Header from './Components/Header.jsx'
 import { AnimatePresence } from 'framer-motion'
@@ -11,14 +11,19 @@ import { actionType } from './context/reducer'
 const App = () => {
     const [{ foodItems }, dispatch] = useStateValue();
 
-    const fetchFoodItems = async () => {
+    const fetchData = async () => {
         await getAllFoodItems().then((data) => {
-        dispatch({
-            type: actionType.SET_FOOD_ITEMS,
-            foodItems: data,
+            dispatch({
+                type: actionType.SET_FOOD_ITEMS,
+                foodItems: data,
             });
-        });
-    };
+        })
+    }
+
+        useEffect(() => {
+        fetchData();
+    }, []);
+
     return (
         <AnimatePresence exitBeforeEnter>
             <div className='w-screen h-auto flex flex-col bg-primary'>

@@ -2,10 +2,13 @@ import React, { useState } from 'react'
 import { deleteObject, getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import { motion, AnimatePresence } from 'framer-motion';
 import { storage } from "../firebase.config.js";
-import { saveItem } from "../utilities/firebaseFuction";
+import { getAllFoodItems, saveItem } from "../utilities/firebaseFuction";
 import { MdFastfood, MdCloudUpload, MdDelete, MdFoodBank, MdAttachMoney } from 'react-icons/md';
 import { categories } from '../utilities/data';
 import Loader from './Loader';
+import { actionType } from '../context/reducer.js';
+import { useStateValue } from '../context/StateProvider.js';
+
 
 const CreateContainer = () => {
   const [title, setTitle] = useState("");
@@ -17,6 +20,7 @@ const CreateContainer = () => {
   const [alertStatus, setAlertStatus] = useState("danger");
   const [msg, setMsg] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [{ foodItems }, dispatch] = useStateValue();
 
   const uploadImage = (e) => {
     setIsLoading(true);
@@ -41,28 +45,28 @@ const CreateContainer = () => {
         }, 4000);
       },
       () => {
-        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+        getDownloadURL(uploadTask.snapshot.ref).then(downloadURL => {
           setImageAsset(downloadURL);
           setIsLoading(false);
           setFields(true);
-          setMsg("Image uploaded to successfully 😊");
+          setMsg("Image uploaded successfully");
           setAlertStatus("success");
           setTimeout(() => {
             setFields(false);
           }, 4000);
         });
-      }
-    );
+      })
   };
+
   const deleteImage = () => {
     setIsLoading(true);
     const deleteRef = ref(storage, imageAsset);
     deleteObject(deleteRef)
       .then(() => {
-        setImageAsset(null);
-        setIsLoading(false);
+        setImageAsset(null)
+        setIsLoading(false)
         setFields(true);
-        setMsg("Image deleted  successfully 😊");
+        setMsg("Image deleted successfully");
         setAlertStatus("success");
         setTimeout(() => {
           setFields(false);
@@ -78,6 +82,8 @@ const CreateContainer = () => {
           setIsLoading(false);
         }, 4000);
       });
+
+      fetchData();
   };
 
   const saveDetails = () => {
@@ -126,6 +132,15 @@ const CreateContainer = () => {
     setPrice("");
     setCalories("Select Category");
   };
+
+  const fetchData = async () => {
+        await getAllFoodItems().then((data) => {
+            dispatch({
+                type: actionType.SET_FOOD_ITEMS,
+                foodItems: data,
+            });
+        })
+    }
 
   return (
     <div className='w-full min-h-screen flex items-center justify-center'>
@@ -184,11 +199,10 @@ const CreateContainer = () => {
               <>
                 {!imageAsset ? (
                   <label className="w-full h-full flex flex-col items-center justify-center cursor-pointer">
-                    <div className="w-full h-full flex flex-col items-center justify-center">
+                    <div className="w-full h-full flex flex-col items-center justify-center gap-2">
                       <MdCloudUpload className="text-gray-500 group-hover:text-gray-700 text-3xl" />
                       <p className="text-gray-500 group-hover:text-gray-700">
-                        Click here to upload
-                      </p>
+                        Click here to upload </p>
                     </div>
                     <input
                       type="file"
@@ -208,9 +222,8 @@ const CreateContainer = () => {
                     <button
                       type="button"
                       className="absolute bottom-3 right-3 p-3 rounded-full bg-red-500 text-xl
-                  cursor-pointer outline-none hover:shadow-md duration-500 transition-all ease-in-out"
-                      onClick={deleteImage}
-                    >
+                        cursor-pointer outline-none hover:shadow-md duration-500 transition-all ease-in-out"
+                      onClick={deleteImage} >
                       <MdDelete className="text-white" />
                     </button>
                   </div>
@@ -225,8 +238,8 @@ const CreateContainer = () => {
               <input
                 type="text"
                 required
-                placeholder="Give me a calories..."
-                className="w-full h-full text-lg  bg-transparent outline-none order-none placeholder:text-gray-500"
+                placeholder="calories..."
+                className="w-full h-full text-lg bg-transparent outline-none border-none placeholder:text-gray-400 text-textColor"
                 value={calories}
                 onChange={(e) => setCalories(e.target.value)}
               />
@@ -238,7 +251,7 @@ const CreateContainer = () => {
                 type="text"
                 required
                 placeholder="Add the price..."
-                className="w-full h-full text-lg  bg-transparent outline-none order-none placeholder:text-gray-500"
+                className="w-full h-full text-lg  bg-transparent outline-none order-none placeholder:text-gray-400 text-textColor"
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
               />
@@ -248,13 +261,13 @@ const CreateContainer = () => {
           <div className="flex items-center w-full">
             <button
               type="button"
-              className="ml-0 md:ml-auto w-full md:w-auto border-none outline-none bg-emerald-500 px-12 py-2 rounded-lg text-lg text-white font-semibold"
-              onClick={saveDetails}
-            >
+              className="ml-0 md:ml-auto w-full md:w-auto border-none outline-none 
+                bg-emerald-500 px-12 py-2 rounded-lg text-lg text-white font-semibold"
+              onClick={saveDetails} >
               Save
             </button>
           </div>
-      </div>
+      </div>      
     </div>
   )};
 
