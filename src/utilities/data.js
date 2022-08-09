@@ -3,12 +3,6 @@ import Icecream from '../asset/img/i1.png'
 import Strawberry from '../asset/img/f1.png'
 import Chicken from '../asset/img/c3.png'
 import Fish from '../asset/img/fi4.png'
-import Nugget from '../asset/img/c4.png'
-import Prawns from '../asset/img/cu3.png'
-import Vanila from '../asset/img/i3.png'
-import Rice from '../asset/img/r5.png'
-import Berries from '../asset/img/f4.png'
-import Monster from '../asset/img/d4.png'
 
 
 export const heroData = [
@@ -46,8 +40,8 @@ export const categories = [
     },
     {
         id: 2,
-        name: "Beef",
-        urlParamName: "beef",
+        name: "Ice-Cream",
+        urlParamName: "ice-cream",
     },
     {
         id: 3,
@@ -61,8 +55,8 @@ export const categories = [
     },
     {
         id: 5,
-        name: "Pizza",
-        urlParamName: "pizza",
+        name: "Fruits",
+        urlParamName: "fruits",
     },
     {
         id: 6,
@@ -88,7 +82,7 @@ export const foodItems = [
         category: "chicken",
         imageURL:
         "https://firebasestorage.googleapis.com/v0/b/foodapp-mar22.appspot.com/o/Images%2F1647820363190-kebab.png?alt=media&token=0c23a6a5-17fc-4f75-b209-4a50bd537ece",
-        price: "10",
+        price: "1000",
         title: "Chicken Kebab",
     },
     {
@@ -97,16 +91,16 @@ export const foodItems = [
         category: "chicken",
         imageURL:
         "https://firebasestorage.googleapis.com/v0/b/foodapp-mar22.appspot.com/o/Images%2F1647820550346-pasta.png?alt=media&token=0bb88498-3d97-4256-a042-f1779b36627a",
-        price: "8.5",
+        price: "8,000",
         title: "Spicy Chilly Cheese Pasta",
     },
     {
         id: "1647820625440",
-        calories: "60",
+        calories: "6000",
         category: "chicken",
         imageURL:
         "https://firebasestorage.googleapis.com/v0/b/foodapp-mar22.appspot.com/o/Images%2F1647820597714-noodles.png?alt=media&token=2f18702b-e6b3-4145-8f72-1d200941930b",
-        price: "12.5",
+        price: "12,500",
         title: "Pepper Max Noodles",
     },
     {
@@ -115,7 +109,7 @@ export const foodItems = [
         category: "chicken",
         imageURL:
         "https://firebasestorage.googleapis.com/v0/b/foodapp-mar22.appspot.com/o/Images%2F1647821188759-friedrice.png?alt=media&token=f345ca53-0071-43cf-b4ed-9c2f65d3ea69",
-        price: "8.5",
+        price: "8,500",
         title: "Chicken Fried Rice",
     },
     {
@@ -124,7 +118,7 @@ export const foodItems = [
         category: "fish",
         imageURL:
         "https://firebasestorage.googleapis.com/v0/b/foodapp-mar22.appspot.com/o/Images%2F1647821575907-friedfish.png?alt=media&token=4a7a9e87-1ee2-43f6-8932-f18771feb4b2",
-        price: "12.5",
+        price: "12,500",
         title: "Overnight Marinated Fish",
     },
     ];

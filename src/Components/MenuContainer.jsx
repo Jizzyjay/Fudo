@@ -10,7 +10,6 @@ import { useStateValue } from "../context/StateProvider";
 import { actionType } from "../context/reducer";
 import RowContainer from "./RowContainer.jsx";
 
-
     const activeStyles =
     "group hover:bg-red-400 w-24 min-w-[94px] h-28 cursor-pointer rounded-lg bg-red-400 shadow-lg flex flex-col gap-3 items-center justify-center duration-150 transition-all ease-in-out";
 
@@ -23,37 +22,33 @@ import RowContainer from "./RowContainer.jsx";
 
         useEffect (() => {}, [filter]);
 
+        const [{ foodItems, cartItems, total }, dispatch] = useStateValue();
 
+        const [cart, setCart] = useState([]);
+        const [isLoading, setIsLoading] = useState(false);
+        const [items, setItems] = useState(foodItems);
+        const { searchId } = useParams();
 
+        useEffect(() => {
+            setIsLoading(true);
+            // if (searchId) {
+            setItems(foodItems?.filter((n) => n.category === searchId));
+            setIsLoading(false);
+            // }
+        }, [searchId, foodItems]);
 
-
-        // const [{ foodItems, cartItems, total }, dispatch] = useStateValue();
-
-    // const [cart, setCart] = useState([]);
-    // const [isLoading, setIsLoading] = useState(false);
-    // const [items, setItems] = useState(foodItems);
-    // const { searchId } = useParams();
-
-    // useEffect(() => {
-    //     setIsLoading(true);
-    //     // if (searchId) {
-    //     setItems(foodItems?.filter((n) => n.category === searchId));
-    //     setIsLoading(false);
-    //     // }
-    // }, [searchId, foodItems]);
-
-    // useEffect(() => {
-    //     if (cart.length > 0) {
-    //     dispatch({
-    //         type: actionType.SET_CART,
-    //         cartItems: cart,
-    //     });
-    //     localStorage.setItem("cartItems", JSON.stringify(cartItems));
-    //     }
-    // }, [cart]);
+        useEffect(() => {
+            if (cart.length > 0) {
+            dispatch({
+                type: actionType.SET_CART,
+                cartItems: cart,
+            });
+            localStorage.setItem("cartItems", JSON.stringify(cartItems));
+            }
+        }, [cart]);
 
     return (
-        <selection classname='w-full my-6' id='menu'>
+        <section classname="w-full my-6" id='menu'>
             <div 
                 className="w-full flex flex-col items-center justify-center">
                 <p className="text-2xl font-semibold capitalize text-headingColor relative before:absolute before:rounded-lg before:content
@@ -82,7 +77,7 @@ import RowContainer from "./RowContainer.jsx";
                                     } group-hover:text-textColor text-lg`}
                                 />
                             </div>
-                                <p className={`text-sm ${filter === category.urlParamName ? 'text-white' : 'text-textColor' } 
+                                <p className={`text-sm ${filter === category.urlParamName ? 'text-white' : 'text-textColor'} 
                                     group-hover:text-white`}>{category.name}</p>
                         </motion.div>
                 ))}
@@ -94,8 +89,7 @@ import RowContainer from "./RowContainer.jsx";
                     data={foodItems?.filter((n) => n.category === filter )} />
             </div>
             </div>
-
-        </selection>
+        </section>
     );
     };
 
