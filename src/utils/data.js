@@ -6,38 +6,38 @@ export const categories = [
   },
   {
     id: 2,
-    name: "Beef",
-    urlParamName: "beef",
+    name: "Curry",
+    urlParamName: "curry",
   },
-  {
-    id: 3,
-    name: "Mutton",
-    urlParamName: "mutton",
-  },
+  // {
+  //   id: 3,
+  //   name: "Drinks",
+  //   urlParamName: "drinks",
+  // },
   {
     id: 4,
     name: "Fish",
-    urlParamName: "fish",
+    urlParamName: "fissh",
   },
   {
     id: 5,
-    name: "Pizza",
-    urlParamName: "pizza",
+    name: "Rice",
+    urlParamName: "rice",
   },
   {
     id: 6,
-    name: "Snack",
-    urlParamName: "snacks",
+    name: "Fruit",
+    urlParamName: "fruit",
   },
   {
     id: 7,
-    name: "Deserts",
-    urlParamName: "deserts",
+    name: "Ice Cream",
+    urlParamName: "ice",
   },
   {
     id: 8,
-    name: "Soft Drinks",
-    urlParamName: "drinks",
+    name: "Soft Drink",
+    urlParamName: "drink",
   },
 ];
 
