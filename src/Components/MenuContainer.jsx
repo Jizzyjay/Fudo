@@ -1,20 +1,20 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, NavLink, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { categories, foodItems } from "../utilities/data.js";
 import { IoFastFood } from "react-icons/io5";
-import Dish from "./Dish";
-import Loader from "./Loader";
-import NotFound from "../asset/img/NotFound.svg";
-import { AnimatePresence, motion } from "framer-motion";
+// import Dish from "./Dish";
+// import Loader from "./Loader";
+// import NotFound from "../asset/img/NotFound.svg";
+import { motion } from "framer-motion";
 import { useStateValue } from "../context/StateProvider";
 import { actionType } from "../context/reducer";
 import RowContainer from "./RowContainer.jsx";
 
-    const activeStyles =
-    "group hover:bg-red-400 w-24 min-w-[94px] h-28 cursor-pointer rounded-lg bg-red-400 shadow-lg flex flex-col gap-3 items-center justify-center duration-150 transition-all ease-in-out";
+    // const activeStyles =
+    // "group hover:bg-red-400 w-24 min-w-[94px] h-28 cursor-pointer rounded-lg bg-red-400 shadow-lg flex flex-col gap-3 items-center justify-center duration-150 transition-all ease-in-out";
 
-    const notActiveStyles =
-    "group hover:bg-red-400 w-24 min-w-[94px] h-28 cursor-pointer rounded-lg bg-cardColor shadow-lg flex flex-col gap-3 items-center justify-center duration-150 transition-all ease-in-out";
+    // const notActiveStyles =
+    // "group hover:bg-red-400 w-24 min-w-[94px] h-28 cursor-pointer rounded-lg bg-cardColor shadow-lg flex flex-col gap-3 items-center justify-center duration-150 transition-all ease-in-out";
 
     const MenuContainer = () => {
 

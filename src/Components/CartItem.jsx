@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BiMinus, BiPlus } from "react-icons/bi";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { actionType } from "../context/reducer";
 import { useStateValue } from "../context/StateProvider";
 let items = [];
@@ -18,7 +18,7 @@ const CartItem = ({ item, setFlag, flag }) => {
     };
 
     const updateQty = (action, id) => {
-        if (action == "add") {
+        if (action === "add") {
         setQty(qty + 1);
         cartItems.map((item) => {
             if (item.id === id) {
@@ -26,10 +26,10 @@ const CartItem = ({ item, setFlag, flag }) => {
             setFlag(flag + 1);
             }
         });
-        
+
         cartDispatch();
         } else {
-        if (qty == 1) {
+        if (qty === 1) {
             items = cartItems.filter((item) => item.id !== id);
             setFlag(flag + 1);
             cartDispatch();

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { deleteObject, getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { storage } from "../firebase.config.js";
 import { getAllFoodItems, saveItem } from "../utilities/firebaseFuction";
 import { MdFastfood, MdCloudUpload, MdDelete, MdFoodBank, MdAttachMoney } from 'react-icons/md';

@@ -9,19 +9,19 @@ import { useStateValue } from './context/StateProvider.js'
 import { actionType } from './context/reducer'
 
 const App = () => {
-    const [{ foodItems }, dispatch] = useStateValue();
+        const [{ foodItems }, dispatch] = useStateValue();
 
-    const fetchData = async () => {
+    const fetchFoodItems = async () => {
         await getAllFoodItems().then((data) => {
-            dispatch({
-                type: actionType.SET_FOOD_ITEMS,
-                foodItems: data,
-            });
-        })
-    }
+        dispatch({
+            type: actionType.SET_FOOD_ITEMS,
+            foodItems: data,
+        });
+        });
+    };
 
-        useEffect(() => {
-        fetchData();
+    useEffect(() => {
+        fetchFoodItems();
     }, []);
 
     return (
